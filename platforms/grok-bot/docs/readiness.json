@@ -1,0 +1,42 @@
+{
+  "source_package_version": "0.1.2",
+  "repository_publication_authorized": true,
+  "license": "MIT",
+  "marketplace_submitted": false,
+  "marketplace_approved": false,
+  "submission_ready": false,
+  "target_host_e2e": "PASS_NATIVE_DEVELOPMENT_CONNECTION",
+  "pending": [
+    "重新填写提交页已清空的发布者资料和表单字段",
+    "发布者审阅并接受 Publisher Terms",
+    "正式提交审核（尚未操作）"
+  ],
+  "checked_date": "2026-10-19",
+  "target_marketplace": "Grok Bot",
+  "official_submission_url": "https://x.ai/bot/marketplace/submit-a-plugin",
+  "mcp_endpoint": "https://matchall.net/amatch/v2",
+  "local_package_validation": "PASS_2026-10-19",
+  "public_oauth_discovery": "PASS_2026-10-17",
+  "grok_ui_observation": "OAuth, 25-tool discovery and two distinct identities verified. All eight planned cases passed in the native development connection with the source skill. Original P4 stopped on a prior email approval, which the publisher confirmed. A fresh contact-version pair then passed native accept (approved/2) and correct mutual contact readback; revoke returned revoked/3 without contacts. All three synthetic intents finally paused and private. Legacy connection and unrelated intents preserved. Marketplace installation and approval remain unverified.",
+  "additional_review_preparation": [
+    "Dedicated reviewer access and an actual demo recording remain unverified; they are not shown as required fields on the inspected Grok form",
+    "Private support channel, service policy URLs, availability and commerce declarations need owner review if requested by the reviewer",
+    "Live backend tool-annotation audit was not recorded; this is outside the eight-case result. No server changes or deployment performed."
+  ],
+  "checklist": "submission-checklist.json",
+  "prepared_materials": [
+    "公开源码仓库与 MIT 许可证",
+    "Logo 与图标素材",
+    "名称、简介及示例提示词",
+    "官网地址已核实并写入配置",
+    "当前 Matchall MCP 地址及 OAuth 发现信息",
+    "私密匹配、公开预览与双方联系授权规则",
+    "5 个正例、3 个反例已在 Grok 原生开发连接执行通过",
+    "Grok 官方表单的英文简介、测试说明和字段草稿",
+    "准备包与本地校验",
+    "已审核源码的 CI 通过并合入默认分支"
+  ],
+  "source_default_branch": "PR #1 merged into main at b80dea044c6ee0764745ae20db81954585a2f668 on 2026-10-19.",
+  "publisher_form_fields": "PREVIOUSLY_SUPPLIED_BUT_CURRENT_FORM_EMPTY_REENTRY_REQUIRED",
+  "host_validation_report": "host-validation-2026-10-19.md"
+}

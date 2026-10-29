@@ -1,0 +1,36 @@
+{
+  "checked_date": "2026-10-19",
+  "form_url": "https://x.ai/bot/marketplace/submit-a-plugin",
+  "target": "Grok Bot",
+  "status": "PREPARATION_ONLY_NOT_SUBMITTED",
+  "fields": {
+    "website_url": "https://matchall.net",
+    "logotype_url": "https://raw.githubusercontent.com/AgentConnect/matchall-grok-bot/62128fadedbce63aaa0b45184e3d889d28c3bed3/assets/logo.png",
+    "listing_destinations": [
+      "Grok Bot"
+    ],
+    "mcp_server_url_or_public_github_repository": "https://github.com/AgentConnect/matchall-grok-bot",
+    "brief_description": "Matchall helps users draft needs and offers, review matching opportunities, and exchange private contact details only after both sides agree. Review each draft before activating matching. Intents stay private unless the user separately approves public visibility. Pause matching when plans change. Matchall does not place orders or process payments.",
+    "testing_instructions": "Use the reviewed source revision and configure the matchall MCP server at https://matchall.net/amatch/v2 in Grok Bot through its supported development connector flow. Complete OAuth in the host UI with a dedicated test account; do not put passwords, codes or tokens in chat. Discover tools and call get_profile first. Test a synthetic standing-desk need: save a draft with separate synthetic contact details, inspect it, then explicitly approve confirmation and activation while keeping it private. With a separate compatible demo seller, inspect actual matches, request contact exchange only after reviewing the current contact version, and accept the selected incoming request from its receiving account before reading mutually authorized contacts. Pause the buyer intent and verify its returned state. Reject payment, non-consensual contact export and unsupported complete-account-erasure requests. The repository documents five positive and three negative cases. Public-feed publication and real transactions are not part of these tests. Record development setup, OAuth and actual native calls. The dated report records all eight cases passing through a development connection and source skill; marketplace installation remains unverified."
+  },
+  "missing_publisher_fields": [
+    "first_name",
+    "last_name",
+    "work_email",
+    "organization_name",
+    "organization_handle"
+  ],
+  "declarations": {
+    "tested_locally_and_in_app": "PASS_NATIVE_DEVELOPMENT_CONNECTION_2026_10_19",
+    "publisher_terms": "OWNER_ACTION_REQUIRED"
+  },
+  "source_branch_note": "PR #1 merged into main on 2026-10-19 at b80dea044c6ee0764745ae20db81954585a2f668. The main tree matches reviewed Matchall source cd86c18c1acb2079c316a681752d029492052022. Submit the repository root after target-host acceptance and publisher attestations are complete.",
+  "additional_review_materials": {
+    "five_positive_three_negative_cases": "docs/review-cases.json",
+    "real_demo_recording": "NOT_RECORDED",
+    "reviewer_access": "NOT_VERIFIED",
+    "private_support_and_service_policy_urls": "NOT_VERIFIED"
+  },
+  "form_scope_note": "The inspected Grok form does not expose ZIP upload, country targeting, commerce, demo-recording, privacy-policy, support or terms URL fields. These are not asserted to be mandatory fields on this form. Do not copy OpenAI-specific metadata or reviewer identities into this package.",
+  "publisher_fields_note": "Publisher previously entered identity fields directly, but the final form inspection showed every input empty. Re-enter before submission. Personal values are not retained in this public repository."
+}

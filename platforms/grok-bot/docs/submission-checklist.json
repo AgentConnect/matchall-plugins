@@ -1,0 +1,98 @@
+{
+  "checked_date": "2026-10-19",
+  "target": "Grok Bot",
+  "submission_ready": false,
+  "items": [
+    {
+      "id": "public_source",
+      "done": true,
+      "label": "公开源码仓库与 MIT 许可证"
+    },
+    {
+      "id": "logo",
+      "done": true,
+      "label": "Logo 与图标素材"
+    },
+    {
+      "id": "listing",
+      "done": true,
+      "label": "名称、简介及示例提示词"
+    },
+    {
+      "id": "homepage",
+      "done": true,
+      "label": "官网地址已核实并写入配置"
+    },
+    {
+      "id": "mcp",
+      "done": true,
+      "label": "当前 Matchall MCP 地址及 OAuth 发现信息"
+    },
+    {
+      "id": "consent_skill",
+      "done": true,
+      "label": "私密匹配、公开预览与双方联系授权规则"
+    },
+    {
+      "id": "case_design",
+      "done": true,
+      "label": "5 个正例、3 个反例已在 Grok 原生开发连接执行通过"
+    },
+    {
+      "id": "form",
+      "done": true,
+      "label": "Grok 官方表单的英文简介、测试说明和字段草稿"
+    },
+    {
+      "id": "package",
+      "done": true,
+      "label": "准备包与本地校验",
+      "owner": "agent",
+      "reason": "本地结构、配置、素材及 ZIP 内容检查通过"
+    },
+    {
+      "id": "source_ci",
+      "done": true,
+      "label": "已审核源码的 CI 通过",
+      "owner": "agent",
+      "reason": "PR #1 的 cd86c18 检查通过，已于 2026-10-19 合入 main"
+    },
+    {
+      "id": "publisher",
+      "done": false,
+      "label": "First Name、Last Name、工作邮箱、组织名称、组织 handle",
+      "owner": "publisher",
+      "reason": "曾在表单填写，但最终检查所有输入框为空；提交前需重新填写，个人资料不复制到公开仓库"
+    },
+    {
+      "id": "host_e2e",
+      "done": true,
+      "label": "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
+      "owner": "publisher_and_agent",
+      "reason": "8/8 项通过；新请求由 Grok 原生 accept，双方读取正确，撤销后不返回 contacts；三条测试意向最终均 paused、is_public=false。范围为开发连接与源码 skill，非商城安装。"
+    },
+    {
+      "id": "main",
+      "done": true,
+      "label": "审核后的源码合入默认分支",
+      "owner": "source_review",
+      "reason": "PR #1 已合并，main 为 b80dea044c6ee0764745ae20db81954585a2f668"
+    },
+    {
+      "id": "terms",
+      "done": false,
+      "label": "发布者审阅并接受 Publisher Terms",
+      "owner": "publisher"
+    },
+    {
+      "id": "submit",
+      "done": false,
+      "label": "正式提交审核（尚未操作）",
+      "owner": "publisher"
+    }
+  ],
+  "notes": [
+    "当前已核实表单没有 ZIP、录像链接、国家列表或四个独立政策链接字段，不将其列为 Grok 已确认必填项。",
+    "5 正例/3 反例是准备的验收集，不是已核实的 Grok 官方数量要求。"
+  ]
+}

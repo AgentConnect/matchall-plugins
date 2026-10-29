@@ -1,0 +1,17 @@
+{
+  "name": "matchall-grok-bot",
+  "version": "0.1.2",
+  "description": "Publish needs and offers, inspect matches, and exchange contact details with mutual consent.",
+  "repository": "https://github.com/AgentConnect/matchall-grok-bot",
+  "homepage": "https://matchall.net",
+  "license": "MIT",
+  "keywords": [
+    "matching",
+    "procurement",
+    "mcp",
+    "matchall"
+  ],
+  "logo": "assets/logo.png",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}
