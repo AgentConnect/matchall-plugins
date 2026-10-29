@@ -1,0 +1,65 @@
+{
+  "policy_id": "matchall-retention-2026-10-21",
+  "decision_status": "APPROVED_IMPLEMENTATION_TARGET",
+  "approved_date": "2026-10-21",
+  "production_status": "NOT_IMPLEMENTED_OR_VERIFIED",
+  "public_effective_date": null,
+  "existing_data_deletion_authorized": false,
+  "rules": {
+    "active_accounts_and_saved_paused_intents": {
+      "retain_while_needed": true,
+      "inactivity_review_after_calendar_months": 12,
+      "notice_window_days": 30,
+      "background_polling_counts_as_user_activity": false
+    },
+    "never_activated_drafts": {
+      "days": 90,
+      "anchor": "last_user_edit_at"
+    },
+    "ended_intents": {
+      "days": 90,
+      "anchor": "closed_or_fulfilled_or_expired_at"
+    },
+    "private_contacts": {
+      "basis": "current_need_and_authorization",
+      "latest_cleanup": "relevant_intent_cleanup",
+      "raw_contact_in_audit": false
+    },
+    "ordinary_logs": {
+      "days": 30,
+      "anchor": "event_at"
+    },
+    "necessary_security_and_consent_audit": {
+      "days": 90,
+      "anchor": "event_at",
+      "exceptions": "specific_necessity_and_periodic_review"
+    },
+    "minimized_support_and_request_evidence": {
+      "calendar_months": 12,
+      "anchor": "resolved_at"
+    },
+    "routine_backups": {
+      "days": 30,
+      "anchor": "backup_created_at",
+      "restore_requires_deletion_replay": true
+    },
+    "processor_copies": {
+      "status": "VERIFY_CONTRACT_AND_ACCOUNT_SETTINGS"
+    }
+  },
+  "request_handling": {
+    "support_email": "support@awiki.ai",
+    "normal_response_deadline": "one_calendar_month_subject_to_applicable_rules",
+    "internal_target_days": 28,
+    "ownership_check": "proportionate",
+    "other_valid_request_channels": "accepted"
+  },
+  "notes": [
+    "This is a decision record for implementation preparation, not a running cleanup configuration.",
+    "Do not replace the named event anchors with generic updated_at or treat unknown timestamps as expired.",
+    "The approved schedule is not a universal UK statutory retention schedule.",
+    "The public notice is effective October 21; the retention targets remain pending implementation as disclosed."
+  ],
+  "public_notice_published_date": "2026-10-21",
+  "public_notice_url": "https://matchall.net/privacy"
+}

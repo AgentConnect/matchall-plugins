@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-22T10:10:41.405595+00:00",
+  "endpoint": "https://matchall.net/mcp/chatgpt",
+  "checks": {
+    "resource_discovery": "PASS",
+    "http_and_tool_auth_challenges": "PASS",
+    "origin_protection": "PASS",
+    "public_pages": "PASS",
+    "oauth_dcr_pkce_refresh_and_profile": "PASS",
+    "code_and_refresh_audience_binding": "PASS",
+    "original_endpoint_regression": "PASS",
+    "issued_connections_revoked": "PASS"
+  },
+  "portal_oauth_and_scan": "NOT_RUN",
+  "issuer": "https://www.amatch.me/oauth/match",
+  "tool_count": 32,
+  "oauth": "PASS_SYNTHETIC_ACCOUNT_NOT_PORTAL",
+  "business_writes": 0,
+  "email_sent": false
+}

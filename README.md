@@ -26,10 +26,15 @@ Matchall does not place orders or process payments.
 
 ## Authorization and data
 
-The canonical remote MCP endpoint for this candidate is
-`https://matchall.net/amatch/v2`. The endpoint was deployed and passed public
-HTTPS acceptance on 2026-10-16; ChatGPT host authorization and tool acceptance
-remain pending.
+The remote MCP endpoint for this candidate is
+`https://matchall.net/amatch/v2`. Version 0.1.6 restores the existing app's
+original URL after the portal rejected 0.1.5's URL change. The deployed
+`/mcp/chatgpt` alias remains available but is not used by this package.
+See [the binding conflict handoff](docs/MCP-URL-CONFLICT.md) and
+[endpoint validation history](docs/CHATGPT-ENDPOINT.md).
+The latest user screenshot shows the portal account connected and MCP Configured.
+A new tool scan after the deployed annotation fix and final-package acceptance
+remain to be confirmed.
 Use the host's OAuth connection UI. Discovery advertises PKCE S256, dynamic
 client registration, and `intent:read` / `intent:write` scopes. Never put tokens,
 passwords, verification codes, or private contact details in this repository.
@@ -68,14 +73,23 @@ Neither script installs a plugin, invokes matching tools, deploys the service,
 or submits a marketplace application. CI only validates and packages locally.
 See the [checkbox checklist](docs/SUBMISSION-CHECKLIST.md),
 [reviewer guide](docs/REVIEWER-GUIDE.md) and [readiness](docs/READINESS.md) for the
-remaining marketplace work. Draft policies in `docs/policy-drafts/` are not
-published policies and must not be represented as verified listing URLs.
+remaining marketplace work. Historical drafts in `docs/policy-drafts/` are superseded by the public pages.
+Archive-readable copies are in `docs/published-policies/`. Page availability is
+separate from validation of the remaining operational and legal arrangements.
 
 ## Support and license
 
 Use this repository's Issues for public package bugs. Never post credentials,
-private contact details, or account recovery information in issues. A dedicated
-private service-support channel and service policies are still being prepared.
+private contact details, or account recovery information in issues. For account, privacy and abuse requests use
+[Matchall Support](https://matchall.net/support) or support@awiki.ai. Privacy and
+terms are published at [Privacy Policy](https://matchall.net/privacy) and
+[Terms of Service](https://matchall.net/terms). Their links remain included in 0.1.10.
+The privacy notice explicitly discloses pending cleanup and provider-verification
+work. See [retention plan](docs/POLICY-IMPLEMENTATION.md).
+
+The [public development walkthrough](https://matchall.net/review/matchall-chatgpt-demo-20261023.html) requires no
+sign-in. Its direct MP4 URL is in the manifest; it is not acceptance evidence for
+the current package. See [administrator handoff](docs/ADMIN-HANDOFF.md).
 
 [MIT](LICENSE) applies to this plugin package. It does not grant access to other
 users' data, relicense the hosted backend, or imply permission to impersonate
@@ -92,3 +106,30 @@ The dedicated instance retains its stable OAuth issuer identity and explicitly
 configured legacy resource compatibility. Account data and permissions are not
 changed by this package update.
 This source update does not publish a release or update installed host copies.
+
+The administrator reported a duplicate binding for the original MCP URL. The
+owner subsequently authorized deployment of the new endpoint used by 0.1.5.
+The portal has now explicitly rejected the URL change in this existing draft.
+Version 0.1.6 restores the original URL while retaining policy and demo links;
+the later screenshot shows MCP Configured and account connected. The earlier
+binding error is retained as history, not asserted as a current blocker. Do not
+retry 0.1.5 on this draft or delete the app to try to free its URL.
+
+
+## Review preparation 0.1.10
+
+The current portal supports email-code login. Dedicated synthetic reviewer data
+has been provisioned; actual reviewer mailbox delivery and sign-in are unverified.
+The updated five positive cases run with one reviewer account and a pre-seeded
+seller; P4 cancels the buyer's pending request instead of requiring seller login.
+Each run creates a fresh P1 intention. Three negative cases and the original MCP
+URL are retained. All eight cases were executed through a separate development
+MCP connection on October 22; the updated recording is public. Complete-package
+acceptance remains unverified, and a standard fresh-account OAuth scope issue
+requires repair and retesting. See [rehearsal evidence](docs/DEVELOPMENT-REHEARSAL-20261022.md).
+Credentials and exact sign-in instructions belong only in secure portal fields.
+
+The current demonstration includes English AI narration added on October 23 and
+optional English captions. The recorded ChatGPT video is unchanged.
+
+The listing now uses Business & Operations and describes the buyer/seller matching workflow with a concrete used-computer example. See [category rationale](docs/LISTING-CATEGORY.md); portal acceptance is unverified.

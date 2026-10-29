@@ -1,52 +1,59 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "description": "Publish needs and offers, inspect matches, and exchange contact details with mutual consent.",
+  "description": "Match needs with offers, compare compatible buyers and sellers, and exchange contact details with mutual consent.",
   "extensions": {
     "com.openai": {
       "interface": {
-        "category": "Productivity",
+        "category": "Business & Operations",
         "defaultPrompt": [
-          "Help me publish a procurement need and review the draft before activating it.",
+          "Create a private draft to buy a used Mac mini. Show it for review before activating matching.",
           "Show the latest matches for my active needs.",
           "Help me pause a need that I no longer want to match."
         ],
         "displayName": "Matchall",
-        "longDescription": "Create a need or offer in your own words, review the extracted draft, and activate matching after confirmation. Intents are private by default; public-feed visibility requires separate approval of the current preview. Compare counterpart business summaries and matching status. Keep contact details separate from business text and share them only through mutually approved contact exchanges. Pause or close needs when appropriate. Email binding is optional and supports account recovery and notifications. Without email, the assistant can help set up periodic checks where the host supports scheduling, or explain manual checking. Matching and contact exchange do not mean a transaction is complete. Matchall does not place orders or process payments.",
-        "shortDescription": "Match needs and offers",
+        "developerName": "Zhang Yifan",
+        "longDescription": "Matchall matches needs with offers to help people find compatible counterparties, including buyers and sellers of physical goods. Its main workflow is to manage a request or offer, compare matching opportunities, and arrange an introduction with mutual consent. For example, describe a used computer you want to buy or sell, review matching offers or requests, and decide whether to exchange contact details. For users aged 18 and over. Create a need or offer in your own words, review the extracted draft, and activate matching after confirmation. Intents are private by default; public-feed visibility requires separate approval of the current preview. Compare counterpart business summaries and matching status. Keep contact details separate from business text and share them only through mutually approved contact exchanges. Pause or close needs when appropriate. Email binding is optional and supports account recovery and notifications. Without email, the assistant can help set up periodic checks where the host supports scheduling, or explain manual checking. Matching and contact exchange do not mean a transaction is complete. Matchall does not place orders or process payments.",
+        "shortDescription": "Match buyers and sellers",
         "logo": "./assets/logo.png",
         "composerIcon": "./assets/icon.png",
-        "websiteURL": "https://matchall.net"
+        "websiteURL": "https://matchall.net",
+        "supportURL": "https://matchall.net/support",
+        "privacyPolicyURL": "https://matchall.net/privacy",
+        "termsOfServiceURL": "https://matchall.net/terms"
       },
       "review": {
+        "demo_recording_url": "https://matchall.net/review/matchall-chatgpt-demo-20261023-narrated.mp4",
+        "commerce": true,
+        "commerce_description": "Matchall provides free matching and introductions for needs and offers, including physical-goods buyers and sellers. Participants may arrange transactions outside Matchall. The plugin does not place orders, take payments, charge commissions, or sell subscriptions. Its broader intent-matching capabilities and proposed directory use cases still require commerce-policy review before submission.",
         "test_cases": {
           "positive": [
             {
-              "description": "P1 — Create a private Mac mini draft; only confirm and activate after separate user approval. Use a fresh dedicated reviewer account and a unique REVIEW run label. After reviewing the actual draft, send this separate follow-up: I have reviewed this draft and the separate synthetic contact details. They are correct. Confirm and activate this intent for matching, while keeping it off the public feed.",
-              "prompt": "Please use English throughout, including all saved titles, descriptions, categories and summaries. Use Matchall to create a draft for this fictional review demo, labeled REVIEW-20261016-SG-MINI-01, titled \"REVIEW SG MINI 01 — Wanted: M2 Mac mini\". I am looking for one used M2 Mac mini with 16 GB RAM and 512 GB SSD, in working condition with proof of purchase. My budget is up to SGD 600, and I can collect it in Singapore. There is no rush. Keep the listing private, off the public feed. Store review-buyer@example.com separately as my synthetic private contact, never in business fields. Preserve the English wording and Singapore location in the saved fields. Show me the actual saved draft and wait for my approval before activating it.",
+              "description": "P1 — Create a fresh private Mac mini draft in the dedicated reviewer account, then confirm and activate only after a separate approval turn. Choose a new REVIEW-NEW run label each time; do not reuse the pre-seeded sample or an old cancelled contact exchange. Separate follow-up after inspecting the actual draft: I have reviewed this draft and the separate synthetic contact details. They are correct. Confirm and activate this intent for matching, while keeping it off the public feed.",
+              "prompt": "Please use English throughout. Choose a fresh unique label starting REVIEW-NEW for this fictional review run and show it to me. Create a private draft for one used M2 Mac mini with 16 GB RAM, 512 GB SSD, working condition and proof of purchase. Budget up to SGD 600, collection in Singapore, no rush. This is synthetic review data: seek only compatible synthetic review samples, not real transactions. Store review-buyer@example.com separately as my synthetic private contact, never in business fields. Keep the listing off the public feed. Show the actual saved draft and wait for my approval before activating it.",
               "tools_triggered": "ingest_intent, get_intent, confirm_intent, activate_intent; set_intent_contact if necessary",
               "expected_behavior": "Keep contact data separate. Show actual draft and unknown fields. Wait for follow-up approval. Activate the same ID, keep visibility private, use idempotent writes and bounded retries without duplicates."
             },
             {
-              "description": "P2 — Read actual matches for the active demo buyer intention. Setup: a separate demo seller has a private active M2 Mac mini offer with 16 GB RAM, 512 GB SSD, proof of purchase, normal wear, price SGD 550 and Singapore collection. Confirm the actual pair before subsequent exchange tests.",
-              "prompt": "Show the latest matches for my REVIEW-20261016-SG-MINI-01 Mac mini intent. Compare the model, memory, storage, price and location. Use only actual returned results and explain any unknown or unverified information. Do not contact anyone.",
+              "description": "P2 — Read actual matches for the new active buyer intention from P1. A separate, operator-controlled demo seller already has an active private offer: M2 Mac mini, 16 GB RAM, 512 GB SSD, proof of purchase, normal wear, SGD 550, Singapore collection. Its business description contains REVIEW-20261022-SG-MINI-PENDING-SELLER. The reviewer does not need to sign in as that seller. Confirm the actual counterpart ID before P3. If matching is still running, report that state and retry the read after it finishes; never invent a match.",
+              "prompt": "Show the latest matches for the new REVIEW-NEW Mac mini intent we created and activated in P1. Find the synthetic seller whose description contains REVIEW-20261022-SG-MINI-PENDING-SELLER. Compare model, memory, storage, price and location using only returned data. Explain unknown or unverified information. Do not contact anyone.",
               "tools_triggered": "search, get_intent, list_matches, get_match",
               "expected_behavior": "Use returned IDs and business summaries. Distinguish unknown/unverified fields and empty results. Do not reveal counterpart contacts or invoke write/exchange tools."
             },
             {
-              "description": "P3 — Buyer requests mutual contact exchange for the specific demo seller match.",
-              "prompt": "For the REVIEW-20261016-SG-MINI-01-SELLER demo match we just reviewed, I agree to share my reviewed synthetic contact, review-buyer@example.com, only if that demo account also agrees. Request a contact exchange. Do not contact any other match.",
+              "description": "P3 — Buyer requests contact exchange only for the exact pre-seeded synthetic seller match identified in P2. The seller has not approved it. Use the current reviewed private contact version. Each test run starts with a new P1 buyer intent so previous cancellations are not reused.",
+              "prompt": "For the synthetic REVIEW-20261022-SG-MINI-PENDING-SELLER match we just reviewed, I agree to share my reviewed synthetic contact, review-buyer@example.com, only if that demo seller also agrees. Request contact exchange for this match only. Do not contact any other match.",
               "tools_triggered": "get_intent_contact, request_contact_exchange, get_contact_exchange",
               "expected_behavior": "Use actual match ID and reviewed current contact version. With no reverse consent, report pending and withhold seller contact. Do not mark either intent fulfilled."
             },
             {
-              "description": "P4 — Read mutually authorized contacts in ChatGPT. Setup: after P3, the separate demo seller reviews this exact incoming request and its current synthetic contact in the Matchall website, then explicitly accepts it. This case tests buyer-side authorized retrieval, not seller-side respond_contact_exchange in ChatGPT.",
-              "prompt": "The other demo account has reviewed and accepted the request in Matchall. Check the existing contact exchange for my REVIEW-20261016-SG-MINI-01 intent. Show the contact details only if Matchall confirms mutual approval and current access. Do not create another request or mark either listing completed.",
-              "tools_triggered": "list_contact_exchanges, get_contact_exchange",
-              "expected_behavior": "Read the existing actual exchange. Show contacts only when status is approved and current access is authorized. Otherwise state pending, revoked, expired or unavailable accurately and withhold contacts. Do not create a second exchange, accept on behalf of the seller, or fulfill either listing."
+              "description": "P4 — Withdraw the pending buyer request created in P3 and verify that private contacts remain unavailable. This is independently runnable by the reviewer account and does not require a second mailbox, operator intervention or pre-approved expiring consent. Read the current exchange and its row_version before cancelling.",
+              "prompt": "Cancel the pending contact exchange I requested in P3 for this new REVIEW-NEW Mac mini intent. Check the resulting status and confirm that seller contact details are unavailable. Keep both listings unchanged. Do not approve on behalf of the seller or create another request.",
+              "tools_triggered": "list_contact_exchanges, get_contact_exchange, respond_contact_exchange (action=cancel), get_contact_exchange",
+              "expected_behavior": "Identify the existing P3 exchange and read its current row_version. Cancel only the buyer-owned pending request using expected_row_version. Verify status=cancelled and no counterpart contact disclosure. Preserve both intention lifecycles and do not claim deletion or transaction completion. On a version conflict, read the current state before deciding whether cancellation is still applicable."
             },
             {
-              "description": "P5 — Pause buyer matching while preserving the saved intention.",
-              "prompt": "Pause matching for my REVIEW-20261016-SG-MINI-01 Mac mini intent. Keep the record for later. Do not close it, mark it completed, or claim that its data has been deleted.",
+              "description": "P5 — Pause only the new buyer intention created in P1, preserving its record. Do not pause the pre-seeded buyer or seller samples. For another review run, create a fresh P1 intent; do not reuse the cancelled P3 exchange.",
+              "prompt": "Pause matching for the new REVIEW-NEW Mac mini intent we created in P1. Keep the record for later. Leave the pre-seeded demo samples unchanged. Do not close it, mark it completed, or claim its data has been deleted.",
               "tools_triggered": "search, get_intent, update_intent_status",
               "expected_behavior": "Use pause, not close or fulfill. Confirm returned paused lifecycle. Do not claim deletion or revocation of previously viewed information."
             }
@@ -68,18 +75,19 @@
         }
       },
       "publication": {
-        "release_notes": "Prepare Matchall for public review: document optional-email authorization, separately stored private contacts, bilateral contact exchange, bounded retries and host-dependent status polling; add AWiki monochrome branding and five positive/three negative review cases. This package is a preparation draft, not a published release.",
+        "countries": [],
+        "release_notes": "Clarify the primary needs-and-offers matching workflow, buyer and seller example, and Business & Operations listing category. Update the English listing and Chinese translation. MCP configuration, tool behavior, review cases, public policies and narrated recording are unchanged. This is a local preparation package; portal category acceptance and all outstanding submission checks remain unverified.",
         "translations": {
           "zh-CN": {
-            "subtitle": "匹配需求与供给",
-            "description": "用自然语言创建需求或供给，审核草稿后启动匹配，比较匹配方的业务信息，并在双方同意后交换私密联系方式。支持暂停和关闭需求；邮箱绑定可选，用于辅助账号找回和通知。未绑定邮箱时，可在客户端支持的情况下设置定时查询，否则手动查看。匹配或联系方式交换不代表交易已完成。Matchall 不下单、不处理付款。"
+            "subtitle": "匹配买家与卖家",
+            "description": "Matchall 将需求与供给进行匹配，帮助用户寻找合适的对接方，包括实物商品的买家与卖家。主要流程是管理需求或供给、比较匹配机会，并在双方同意后交换联系方式。例如，描述想购买或出售的二手电脑，查看匹配的供给或需求，再决定是否联系。面向18岁及以上用户。用自然语言创建需求或供给，审核草稿后启动匹配，比较匹配方的业务信息，并在双方同意后交换私密联系方式。支持暂停和关闭需求；邮箱绑定可选，用于辅助账号找回和通知。未绑定邮箱时，可在客户端支持的情况下设置定时查询，否则手动查看。匹配或联系方式交换不代表交易已完成。Matchall 不下单、不处理付款。"
           }
         }
       }
     }
   },
   "name": "matchall-chatgpt",
-  "version": "0.1.2",
+  "version": "0.1.10",
   "repository": "https://github.com/AgentConnect/matchall-chatgpt",
   "license": "MIT"
 }

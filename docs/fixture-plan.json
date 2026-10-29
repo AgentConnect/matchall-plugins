@@ -1,0 +1,30 @@
+{
+  "status": "PROVISIONED_BACKEND_CHECKED_REVIEWER_LOGIN_UNVERIFIED",
+  "run_label": "REVIEW-20261022-SG-MINI-PENDING",
+  "isolation": "Two dedicated synthetic accounts; only private intentions. Reviewer uses the portal-designated email account; seller is operator-controlled and does not approve requests in these cases.",
+  "login_requirement": "Portal-supported email-code sign-in using the pre-provisioned reviewer mailbox. Actual credentials and sign-in instructions belong only in secure portal fields.",
+  "buyer": {
+    "role": "demand",
+    "text": "Synthetic used M2 Mac mini, 16 GB RAM, 512 GB SSD, working, proof of purchase, Singapore collection; maximum SGD 600.",
+    "visibility": "private",
+    "preseeded": true
+  },
+  "seller": {
+    "role": "supply",
+    "text": "Synthetic used M2 Mac mini, 16 GB RAM, 512 GB SSD, working, proof of purchase, normal wear, Singapore collection; SGD 550.",
+    "visibility": "private",
+    "preseeded": true
+  },
+  "contact_strings_are_login_accounts": false,
+  "review_run": "P1 creates a fresh buyer intent; P2 selects the pre-seeded seller; P3 requests exchange; P4 cancels it; P5 pauses only the P1 buyer. No seller login required.",
+  "backend_verified": [
+    "actual synthetic pair match",
+    "pending contacts withheld",
+    "cancelled contacts withheld",
+    "sample found by review label"
+  ],
+  "target_host_eight_cases": "NOT_RUN",
+  "reviewer_email_delivery_and_signin": "UNVERIFIED",
+  "initial_sample_expiry": "2027-10-22",
+  "automatic_maintenance": false
+}

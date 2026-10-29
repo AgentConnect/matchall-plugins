@@ -1,0 +1,183 @@
+{
+  "checked_at_utc": "2026-10-21T12:11:34.295599+00:00",
+  "checks": [
+    {
+      "url": "https://matchall.net/support",
+      "http_status": 200,
+      "content_type": "text/html",
+      "sha256": "0a5b55dbf7a3d3a9a316a3ff952bfa69831e661d2fe5e053a359a3cf1ad8cde0",
+      "matches_local": true,
+      "checked_at_utc": "2026-10-21T13:57:22.007695+00:00"
+    },
+    {
+      "url": "https://matchall.net/information.css",
+      "http_status": 200,
+      "content_type": "text/css",
+      "sha256": "56523e1a102c1594bf6f5c0af9c1e32a45ffbb8920c3a901b64055f0831da82d",
+      "matches_local": true,
+      "checked_at_utc": "2026-10-21T13:57:22.007695+00:00"
+    },
+    {
+      "url": "https://matchall.net/review/",
+      "http_status": 200,
+      "content_type": "text/html",
+      "content_length": "2823"
+    },
+    {
+      "url": "https://matchall.net/review/review.css",
+      "http_status": 200,
+      "content_type": "text/css",
+      "content_length": "1639"
+    },
+    {
+      "url": "https://matchall.net/review/captions.en.vtt",
+      "http_status": 200,
+      "content_type": "text/vtt",
+      "content_length": "4060"
+    },
+    {
+      "url": "https://matchall.net/review/transcript.en.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "content_length": "3713"
+    },
+    {
+      "url": "https://matchall.net/review/matchall-chatgpt-demo-20261017.mp4",
+      "http_status": 200,
+      "content_type": "video/mp4",
+      "content_length": "14875400"
+    },
+    {
+      "url": "https://matchall.net/privacy",
+      "http_status": 200,
+      "content_type": "text/html",
+      "sha256": "d1d57ff76388ef1fe4734054d2542a2038b7d861fb88709e89aa4a20936127d8",
+      "matches_local": true,
+      "checked_at_utc": "2026-10-21T13:57:22.007695+00:00"
+    },
+    {
+      "url": "https://matchall.net/terms",
+      "http_status": 200,
+      "content_type": "text/html",
+      "sha256": "940259e473a6070a4361d08327b682c1e838024478283906fbe6940ad3ce99fa",
+      "matches_local": true,
+      "checked_at_utc": "2026-10-21T13:57:22.007695+00:00"
+    },
+    {
+      "url": "https://matchall.net/review/matchall-chatgpt-demo-20261017.mp4",
+      "http_status": 206,
+      "range": "bytes 0-1023/14875400"
+    }
+  ],
+  "source_video_sha256": "d134662cc0c74e5164a010adc2f7e99bdd3d0f988f3554e9d3ddc686e855ca36",
+  "video_context": "2026-10-17 development-MCP recording, not exact-package host acceptance",
+  "support_content_matches_source": true,
+  "privacy_and_terms_published": true,
+  "latest_policy_check_utc": "2026-10-21T13:57:22.007695+00:00",
+  "note": "Video checks retain their original timestamp; support, CSS and policy checks were refreshed after policy publication.",
+  "current_demo_context": "October 22 development MCP recording with English AI narration added October 23; complete-plugin acceptance and normal fresh-account OAuth still unverified",
+  "previous_demo_check_20261022": {
+    "video_url": "https://matchall.net/review/matchall-chatgpt-demo-20261022.mp4",
+    "video_http_status": 200,
+    "content_type": "video/mp4",
+    "content_length": 10891835,
+    "accept_ranges": "bytes",
+    "range_http_status": 206,
+    "content_range": "bytes 5000000-5001023/10891835",
+    "player_http_status": 200,
+    "checked_at_utc": "2026-10-22T15:01:25.348217+00:00",
+    "player_url": "https://matchall.net/review/matchall-chatgpt-demo-20261022.html",
+    "local_remote_sha256_match": true,
+    "sha256": "3e54254782915007fd87f206512f28e3c5c45a17d239b56031bbc3a0354a7316",
+    "anonymous_browser_playback": "PASS",
+    "anonymous_browser_seek": "PASS",
+    "browser_observation": {
+      "time_before_seek_seconds": 0.271395,
+      "time_after_seek_seconds": 155.687622,
+      "paused_after_seek": false,
+      "ready_state_after_seek": 4,
+      "media_error": null
+    },
+    "duration_seconds": 420.866016,
+    "edited_recording_context": "ChatGPT development MCP; not complete plugin ZIP acceptance",
+    "listing_check": {
+      "checked_at_utc": "2026-10-22T14:59:12.603570+00:00",
+      "checks": [
+        {
+          "url": "https://matchall.net/",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "title": "Matchall · 让需求遇见回应",
+          "required_content_present": true,
+          "sha256": "e642a716c28cb082cf1a3fc13cee9fbef5ee820d8625669dfd69467bb576ad4d"
+        },
+        {
+          "url": "https://matchall.net/support",
+          "http_status": 200,
+          "content_type": "text/html",
+          "title": "Support · Matchall",
+          "required_content_present": true,
+          "sha256": "0a5b55dbf7a3d3a9a316a3ff952bfa69831e661d2fe5e053a359a3cf1ad8cde0"
+        },
+        {
+          "url": "https://matchall.net/privacy",
+          "http_status": 200,
+          "content_type": "text/html",
+          "title": "Privacy Policy · Matchall",
+          "required_content_present": true,
+          "sha256": "d1d57ff76388ef1fe4734054d2542a2038b7d861fb88709e89aa4a20936127d8"
+        },
+        {
+          "url": "https://matchall.net/terms",
+          "http_status": 200,
+          "content_type": "text/html",
+          "title": "Terms of Service · Matchall",
+          "required_content_present": true,
+          "sha256": "940259e473a6070a4361d08327b682c1e838024478283906fbe6940ad3ce99fa"
+        }
+      ]
+    }
+  },
+  "current_demo_check": {
+    "video_url": "https://matchall.net/review/matchall-chatgpt-demo-20261023-narrated.mp4",
+    "video_http_status": 200,
+    "content_type": "video/mp4",
+    "bytes": 17108925,
+    "range_http_status": 206,
+    "content_range": "bytes 6000000-6001023/17108925",
+    "listing_checks": [
+      {
+        "url": "https://matchall.net/",
+        "http_status": 200,
+        "required_content_present": true
+      },
+      {
+        "url": "https://matchall.net/support",
+        "http_status": 200,
+        "required_content_present": true
+      },
+      {
+        "url": "https://matchall.net/privacy",
+        "http_status": 200,
+        "required_content_present": true
+      },
+      {
+        "url": "https://matchall.net/terms",
+        "http_status": 200,
+        "required_content_present": true
+      }
+    ],
+    "checked_at_utc": "2026-10-23T00:50:12.063903+00:00",
+    "player_url": "https://matchall.net/review/matchall-chatgpt-demo-20261023.html",
+    "sha256": "ef662c861e1db894eb65efc36f933173f94ccc7bc466a28f16c61306bc768a8f",
+    "local_remote_sha256_match": true,
+    "browser_playback": "PASS",
+    "browser_muted": false,
+    "caption_language": "en",
+    "caption_mode_observed": "showing",
+    "media_error": null,
+    "voice": "English AI narration",
+    "duration_seconds": 420.866016,
+    "video_unchanged_from_silent_cut": true
+  }
+}

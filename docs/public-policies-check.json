@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-21T13:57:22.007695+00:00",
+  "authentication": "none",
+  "checks": [
+    {
+      "url": "https://matchall.net/support",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "0a5b55dbf7a3d3a9a316a3ff952bfa69831e661d2fe5e053a359a3cf1ad8cde0",
+      "matches_local": true
+    },
+    {
+      "url": "https://matchall.net/privacy",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "d1d57ff76388ef1fe4734054d2542a2038b7d861fb88709e89aa4a20936127d8",
+      "matches_local": true
+    },
+    {
+      "url": "https://matchall.net/terms",
+      "status": 200,
+      "content_type": "text/html",
+      "sha256": "940259e473a6070a4361d08327b682c1e838024478283906fbe6940ad3ce99fa",
+      "matches_local": true
+    },
+    {
+      "url": "https://matchall.net/information.css",
+      "status": 200,
+      "content_type": "text/css",
+      "sha256": "56523e1a102c1594bf6f5c0af9c1e32a45ffbb8920c3a901b64055f0831da82d",
+      "matches_local": true
+    }
+  ],
+  "scope": "Public policy page availability and content; not portal acceptance or full legal compliance."
+}

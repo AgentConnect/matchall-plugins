@@ -4,6 +4,7 @@ import re
 import struct
 from pathlib import Path, PurePosixPath
 import hashlib
+from urllib.parse import urlsplit
 
 import jsonschema
 
@@ -53,12 +54,28 @@ def validate():
         assert len(interface['shortDescription']) <= 30
         assert len(interface['longDescription']) <= 4000
         assert interface['websiteURL'] == 'https://matchall.net'
+        assert interface['developerName'] == 'Zhang Yifan'
+        assert interface['supportURL'] == 'https://matchall.net/support'
+        assert interface['privacyPolicyURL'] == 'https://matchall.net/privacy'
+        assert interface['termsOfServiceURL'] == 'https://matchall.net/terms'
         prompts = interface['defaultPrompt']
         assert 0 < len(prompts) <= 3 and len(set(prompts)) == len(prompts)
         assert all(0 < len(s) <= 128 and '\n' not in s for s in prompts)
         assert 'apps' not in manifest['extensions']['com.openai']
         review = manifest['extensions']['com.openai']['review']
-        assert set(review) == {'test_cases'}
+        assert set(review) == {'test_cases', 'demo_recording_url', 'commerce',
+                               'commerce_description'}
+        assert review['demo_recording_url'] == (
+            'https://matchall.net/review/matchall-chatgpt-demo-20261023-narrated.mp4')
+        assert review['commerce'] is True and review['commerce_description'].strip()
+        assert manifest['extensions']['com.openai']['publication']['countries'] == []
+        for value in (interface['websiteURL'], interface['supportURL'],
+                      interface['privacyPolicyURL'], interface['termsOfServiceURL'],
+                      review['demo_recording_url']):
+            url = urlsplit(value)
+            assert url.scheme == 'https' and url.hostname
+            assert url.username is None and url.password is None
+        assert not {'test_credentials', 'reviewer_instructions'} & set(review)
         icons = [(interface['logo'], 256), (interface['composerIcon'], 48)]
     else:
         assert set(manifest) == {'name', 'version', 'description', 'repository',
@@ -96,6 +113,7 @@ def validate():
     assert status['submission_ready'] is False
     assert status['marketplace_submitted'] is False
     assert status['source_package_version'] == manifest['version']
+    assert status['mcp_endpoint'] == expected_server['url']
     suspicious = re.compile(
         r'gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}'
         r'|sk-[A-Za-z0-9_-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----'

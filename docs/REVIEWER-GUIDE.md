@@ -1,68 +1,86 @@
 # Matchall ChatGPT review preparation
 
-Status: preparation only. No completed target-host case or demo recording is claimed.
-The package points to https://matchall.net/amatch/v2 with OAuth and PKCE S256.
-Keep the separate legacy awiki.info connection intact. Installing a source ZIP,
-connecting a private custom MCP, and verifying the saved submission are different
-steps and must be recorded separately.
+Candidate 0.1.10; preparation only. The existing MCP URL remains
+https://matchall.net/amatch/v2. No successful run of all eight cases in the final
+packaged ChatGPT installation is claimed.
 
-## Account setup
+## Reviewer access
 
-Use dedicated reviewer accounts that contain only synthetic data. Authenticate
-through the host UI; never put passwords, tokens, OTPs or account IDs in public
-package files. Account access must remain usable without the owner's private
-mailbox or phone. Supply account instructions through the portal's secure reviewer
-fields. For the email-code method, follow the current portal's designated reviewer
-identity and verify access before submitting. No reviewer account has been provisioned
-by this preparation. Do not substitute example.com fixture contacts for a real login.
+The current submission portal explicitly supports **Magic link or email code**.
+Its designated reviewer mailbox has been pre-provisioned as a dedicated Matchall
+account. Enter its address and sign-in instructions only in secure portal fields,
+not in this ZIP. The reviewer receives and enters their own code; owner mailbox,
+phone, Google account and a second reviewer mailbox are not required. Reviewer
+mailbox delivery and actual reviewer sign-in have not been observed. Preparation
+did not send a code to the reviewer, read their mailbox or provide session cookies.
 
-## Fixtures and cases
+This supersedes earlier preparation notes prohibiting all email-code sign-in.
+The user supplied screenshots of the supported method and exact designated email.
+The operator-controlled seller is only a synthetic fixture; reviewers never need
+to sign in to it or obtain its approval to run this case set.
 
-Use docs/review-cases.json and its exact matching manifest cases. Choose a fresh
-REVIEW run label for each run and replace the example label consistently in every
-prompt. Buyer: a used M2 Mac mini, 16 GB RAM, 512 GB SSD, working condition and proof
-of purchase, Singapore collection, budget SGD 600. Seller: the compatible item for
-SGD 550, same location, with proof of purchase and normal wear. Contacts are the
-synthetic strings review-buyer@example.com and review-seller@example.com. Neither
-is a receiving mailbox. Keep both records private. No fixtures were created by
-this preparation.
+## Provisioned samples and repeatable cases
 
-1. Complete OAuth, discover tools and call get_profile. Do not create business
-   records as part of that initial connectivity check.
-2. P1: create and inspect the draft. Only in a separate turn approve confirmation
-   and activation. Verify that the same intent is active and is_public is false.
-3. P2: read the actual match. Explain unknown fields and product-fit verification;
-   do not claim that scores are transaction probabilities.
-4. P3: review the exact buyer contact version and explicitly request exchange only
-   for the demo seller match. Pending requests must withhold seller contact data.
-5. P4 setup: the independent seller uses the Matchall website to review and accept
-   that exact request. Then test buyer-side authorized retrieval in ChatGPT. This
-   does not claim seller-side respond_contact_exchange was tested inside ChatGPT.
-6. P5: pause the intent and inspect the returned lifecycle; do not close, fulfill
-   or claim deletion.
-7. Run N1 payment, N2 unauthorized contact export and N3 complete-erasure claims.
-   Explain the limitations without substitute tool actions or fabricated success.
+A dedicated buyer and separate seller contain synthetic M2 Mac mini samples,
+16 GB RAM, 512 GB SSD, working condition, proof of purchase and Singapore
+collection. Buyer budget: SGD 600; seller price: SGD 550. The samples are active
+and private. Their business descriptions include REVIEW-20261022-SG-MINI-PENDING
+and REVIEW-20261022-SG-MINI-PENDING-SELLER. Current extracted display titles may be
+shorter: identify the seller using its actual business description and ID.
 
-Record actual arguments/results and each case's Passed/Failed/Blocked/Not run
-status in the evidence record. Never expose counterpart data from other matches.
-The five positive/three negative cases are authored, not executed evidence.
+Synthetic private contact strings are review-buyer@example.com and
+review-seller@example.com. Neither is a receiving mailbox or login credential.
+Initial sample expiry is October 22, 2027; the operator must refresh the samples
+before expiry for later reviews. No automatic maintenance is claimed.
 
-## Real demo recording
+Backend setup verified an actual matching result, contact withholding while
+pending, and cancellation without contact disclosure. Historical cancelled setup
+exchanges may appear in the pre-seeded buyer account. They are not the new test
+run. These backend checks do not mark the following ChatGPT cases as Passed.
 
-Rehearse the above in the intended ChatGPT development connection first. Record
-roughly 2–3 minutes showing connection, the draft and separate approval, actual
-matching, pending versus mutually approved contact access, pause and one negative
-case. Keep login details and unrelated chats off screen. Recording capability and
-host authorization must be available before capturing real evidence; screenshots
-or generated slides do not replace a recording. Play back the saved video to check
-readability and coverage. The publisher chooses a reviewer-accessible hosting
-location. Verify playback without private access, then populate demo_recording_url.
-A script or an unhosted local file does not complete this field.
+Run docs/review-cases.json in sequence:
 
-## Final portal steps
+1. P1 creates a NEW private buyer intention with a unique REVIEW-NEW label. Inspect
+   the draft and separate contact; only a separate approval turn permits confirm
+   and activate. Do not reuse the pre-seeded buyer or a previous test intent.
+2. P2 finds the actual pre-seeded seller match from that new buyer intention.
+   Explain product verification and unknowns accurately; scores are not transaction
+   probabilities. Never select unrelated real counterparties.
+3. P3 requests conditional contact sharing for that exact synthetic match. The
+   seller has not consented; its private contact must remain unavailable.
+4. P4 cancels that pending request using its current row_version, then verifies
+   status and contact withholding. Do not accept on behalf of the seller.
+5. P5 pauses only the NEW P1 buyer intention. Preserve the pre-seeded samples.
+6. N1 payment, N2 unauthorized contact export and N3 complete-erasure claims
+   should explain limits without substitute writes or fabricated outcomes.
 
-Complete publisher identity, support/privacy/terms URLs, country targeting and
-commerce declarations before calling the package ready. After an authorized draft
-upload, inspect the exact saved version, connect OAuth and run the relevant cases.
-Complete required domain verification, security checks and owner attestations.
-Submission for review and publication require their corresponding authorization.
+Repeat with a fresh P1 intention. Cancelled exchanges intentionally cannot be
+reopened for the same match/contact versions. Do not silently change contacts,
+invent renewed consent or delete audit history to reset a test.
+
+## Recording and acceptance limits
+
+Direct recording: https://matchall.net/review/matchall-chatgpt-demo-20261023-narrated.mp4
+Player/context: https://matchall.net/review/matchall-chatgpt-demo-20261023.html
+
+The approximately 7:01 video records October 22 ChatGPT development MCP
+interactions for all five positive and three negative cases. Login, unrelated
+windows, waiting intervals and original audio were removed. English AI narration
+and optional English captions were added October 23; actual video is unchanged. Two actual source frames are
+explicitly held for reading. The public MP4 was checked for anonymous playback
+and seeking. See DEVELOPMENT-REHEARSAL-20261022.md for observed results and limits.
+
+This is not final-package acceptance. A standard fresh-account OAuth request
+still includes an incompatible scope; the recorded session used a narrower
+user-authorized request. Repair and retest normal connection before acceptance.
+Reviewer-mailbox delivery and sign-in also remain unverified.
+
+## Portal handoff
+
+The administrator operates the existing draft. Upload the new ZIP to import the
+revised cases, preserve the original MCP URL, and verify all imported fields.
+Supply reviewer access only in secure Review details fields and save them.
+A user screenshot shows MCP Configured/account connected; the annotation fix was
+deployed separately and a fresh portal Rescan result remains to be checked.
+Verify publisher/domain/security requirements and run all eight cases against the
+saved package. The authorized publisher completes attestations and submission.

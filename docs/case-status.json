@@ -1,5 +1,5 @@
 {
-  "checked_date": "2026-10-17",
+  "checked_date": "2026-10-22",
   "target": "ChatGPT packaged plugin",
   "cases": [
     {
@@ -43,5 +43,23 @@
       "evidence": null
     }
   ],
-  "note": "Prepared cases and a private custom-MCP rehearsal are not proof of the exact packaged-plugin acceptance."
+  "note": "The eight cases above remain NOT_RUN for the complete packaged plugin. A separate development MCP rehearsal executed all eight on October 22; see development_mcp_rehearsal for evidence and limitations.",
+  "package_version": "0.1.10",
+  "development_mcp_rehearsal": {
+    "date": "2026-10-22",
+    "target": "ChatGPT custom development MCP connection, not complete plugin ZIP",
+    "cases_executed": 8,
+    "positive_cases": "PASS_WITH_BACKEND_CORROBORATION",
+    "negative_cases": "VISIBLE_BEHAVIOR_PASS_TOOL_TRACE_UNVERIFIED",
+    "video_url": "https://matchall.net/review/matchall-chatgpt-demo-20261023-narrated.mp4",
+    "player_url": "https://matchall.net/review/matchall-chatgpt-demo-20261023.html",
+    "report": "DEVELOPMENT-REHEARSAL-20261022.md",
+    "standard_fresh_connection": "BLOCKED_SCOPE_COMPATIBILITY",
+    "normal_oauth_fixed": false,
+    "narration_added_date": "2026-10-23",
+    "narration_language": "English",
+    "synthetic_narration": true,
+    "recorded_video_changed": false,
+    "captions": "Optional English narration track"
+  }
 }

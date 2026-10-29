@@ -1,5 +1,5 @@
 {
-  "checked_date": "2026-10-17",
+  "checked_date": "2026-10-23",
   "target": "ChatGPT",
   "submission_ready": false,
   "items": [
@@ -22,6 +22,12 @@
       "id": "homepage",
       "done": true,
       "label": "官网地址已核实并写入配置"
+    },
+    {
+      "id": "support",
+      "done": true,
+      "label": "公开 Support 页面与真实支持邮箱",
+      "reason": "https://matchall.net/support 返回 HTTP 200；support@awiki.ai 由运营者提供"
     },
     {
       "id": "mcp",
@@ -51,21 +57,22 @@
     {
       "id": "policy_drafts",
       "done": true,
-      "label": "支持、隐私、条款草稿已更新（尚未发布生效）"
+      "label": "隐私政策与条款草稿",
+      "reason": "历史草稿已由公开双语政策取代，包内保留已发布页面副本"
     },
     {
       "id": "package",
       "done": true,
-      "label": "最终准备包与本地校验",
+      "label": "本轮准备包与本地校验",
       "owner": "agent",
-      "reason": "本地结构、配置、素材及 ZIP 内容检查通过"
+      "reason": "0.1.10 本地 ZIP 校验通过；更新分类及中英文主要用途，原 MCP URL、八项用例、政策和有声演示保持"
     },
     {
       "id": "source_ci",
-      "done": true,
-      "label": "源码 PR 已建立（该提交 CI 另行核对）",
+      "done": false,
+      "label": "本轮代码保存与 CI",
       "owner": "agent",
-      "reason": "既有 PR #1；本轮将推送补全材料"
+      "reason": "基线 PR #1 已合并；本轮尚未推送或运行远程 CI"
     },
     {
       "id": "publisher",
@@ -75,54 +82,77 @@
     },
     {
       "id": "policies",
-      "done": false,
-      "label": "支持渠道、隐私政策及服务条款的正式内容和公开链接",
+      "done": true,
+      "label": "隐私政策及服务条款页面已公开",
       "owner": "publisher",
-      "reason": "需运营主体、支持渠道、处理商、保留/删除承诺；草稿不能替代"
+      "reason": "两个 HTTPS 地址返回 200；0.1.6 保留已配置的链接。页面如实披露实施缺口，不代表法律或运营全面验收通过"
     },
     {
       "id": "publication",
       "done": false,
-      "label": "国家/地区范围和商业声明",
-      "owner": "publisher"
+      "label": "地区及商业声明的审核",
+      "owner": "publisher",
+      "reason": "已确认全部平台可用地区、免费撮合、平台外交易；更广泛用途仍需逐项政策检查"
     },
     {
       "id": "reviewer_access",
       "done": false,
       "label": "审核人员可独立登录的专用账号与真实演示数据",
-      "owner": "publisher_and_agent"
+      "owner": "publisher_and_agent",
+      "reason": "门户指定邮箱账号和私密合成买卖样例已创建，后台匹配和取消流程已核验；实际审核邮箱收信与登录仍待验证"
     },
     {
       "id": "host_e2e",
       "done": false,
       "label": "ChatGPT 内 OAuth 与 8 个用例的真实验收",
       "owner": "publisher_and_agent",
-      "reason": "本地检查、私有 MCP 排练不能替代提交包的目标宿主验收"
+      "reason": "已执行开发 MCP 的八项排练并保存录像；完整插件包验收、审核邮箱登录和标准新连接 OAuth 仍待完成"
     },
     {
       "id": "annotations_live",
       "done": false,
       "label": "已部署服务全部工具标注的语义与实测核对",
       "owner": "agent_after_host_access",
-      "reason": "源码有布尔标注；不能仅凭字段存在宣称语义审核通过"
+      "reason": "三个公开工具标注修复已部署并读回验证；门户 Rescan 尚未确认"
     },
     {
       "id": "demo",
-      "done": false,
-      "label": "真实演示录像及审核可访问的观看链接",
-      "owner": "publisher_and_agent"
+      "done": true,
+      "label": "公开演示录像网址",
+      "owner": "publisher_and_agent",
+      "reason": "原实际画面保持，10 月 23 日补入英文 AI 配音和可切换字幕；匿名非静音播放、字幕载入及 Range 通过"
     },
     {
       "id": "portal",
       "done": false,
-      "label": "提交后台连接、域名验证、安全检查和本人声明",
-      "owner": "publisher_and_agent"
+      "label": "管理员完成域名验证、OAuth、扫描和声明",
+      "owner": "publisher_and_agent",
+      "reason": "最新截图显示 MCP Configured、Account connected；审核资料保存、最新 Rescan、其余验证和声明仍待管理员确认"
     },
     {
       "id": "submit",
       "done": false,
       "label": "正式提交审核（尚未操作）",
       "owner": "publisher"
+    },
+    {
+      "id": "development_rehearsal",
+      "done": true,
+      "label": "开发 MCP 八项实际排练与当前演示录像",
+      "reason": "五个正例状态由后台读回交叉核实；三个反例可见行为符合预期，隐藏只读调用未独立验证"
+    },
+    {
+      "id": "fresh_oauth",
+      "done": false,
+      "label": "标准新账号 OAuth 连接",
+      "reason": "正常连接请求包含不兼容 scope；需修复和重测，临时窄 scope 登录不能作为通过依据"
+    },
+    {
+      "id": "category_portal",
+      "done": false,
+      "label": "新版分类与介绍获门户复核确认",
+      "owner": "publisher",
+      "reason": "已准备 Business & Operations 文案；当前截图位于 All，是否阻塞及新包复核结果未验证"
     }
   ]
 }
