@@ -1,0 +1,4 @@
+{
+  "chatgpt": {"name": "matchall-chatgpt", "format": "agent-plugins"},
+  "grok-bot": {"name": "matchall-grok-bot", "format": "cursor"}
+}

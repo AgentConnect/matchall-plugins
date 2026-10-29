@@ -1,4 +1,4 @@
-name: Validate plugin
+name: Validate plugins
 on: [push, pull_request]
 permissions:
   contents: read
@@ -11,5 +11,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements-dev.txt
+      - run: python -m unittest discover -s tests -v
       - run: python scripts/validate.py
       - run: python scripts/package.py

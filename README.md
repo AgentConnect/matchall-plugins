@@ -1,135 +1,76 @@
-# Matchall for ChatGPT
+# Matchall Plugins
 
-Public source preparation for the Matchall ChatGPT plugin. **Not submitted to or
-approved by the ChatGPT plugin directory.** The manifest version identifies this
-source package; no GitHub release or marketplace version has been published.
+Matchall 的多平台插件源码仓库。ChatGPT 和 Grok Bot 共用技能与品牌素材，
+保留各自的清单、MCP 配置、版本和审核记录。匹配服务后端继续由独立的
+`match-service` 仓库维护。
 
-## Package and installation path
+| 平台 | 插件标识 | 当前源码版本 | 生成后的清单 |
+| --- | --- | --- | --- |
+| ChatGPT | `matchall-chatgpt` | `0.1.10` | `plugin.json` |
+| Grok Bot / Cursor 格式 | `matchall-grok-bot` | `0.1.2` | `.cursor-plugin/plugin.json` |
 
-This repository uses Agent Plugins 1.0: root `plugin.json`, `mcp.json`, and
-`skills/match-service/SKILL.md`. The manifest uses the `matchall-chatgpt`
-name and includes OpenAI listing metadata plus five positive and three
-negative review cases.
+这些版本标识准备包；本次仓库合并不发布版本、不提交商店审核，也不更新已安装插件。
+历史宿主验收结果保存在各平台的 `docs/` 中，不代表合并后新包已经完成宿主验收。
 
-Build the ZIP using the commands below. An authorized developer can later upload
-it as a draft through the OpenAI plugin submission portal, configure the remote
-OAuth connection, and run the review cases. A GitHub upload does not install the
-plugin into ChatGPT or replace an existing private installation. This package is
-**not submission-ready**; missing listing and review items are tracked below.
+## 开发与打包
 
-## What Matchall does
-
-Draft needs and offers in natural language, activate them after approval, inspect
-matches, and exchange private contact details only with mutual consent. Pause or
-close needs when appropriate. Match scores do not guarantee transactions;
-Matchall does not place orders or process payments.
-
-## Authorization and data
-
-The remote MCP endpoint for this candidate is
-`https://matchall.net/amatch/v2`. Version 0.1.6 restores the existing app's
-original URL after the portal rejected 0.1.5's URL change. The deployed
-`/mcp/chatgpt` alias remains available but is not used by this package.
-See [the binding conflict handoff](docs/MCP-URL-CONFLICT.md) and
-[endpoint validation history](docs/CHATGPT-ENDPOINT.md).
-The latest user screenshot shows the portal account connected and MCP Configured.
-A new tool scan after the deployed annotation fix and final-package acceptance
-remain to be confirmed.
-Use the host's OAuth connection UI. Discovery advertises PKCE S256, dynamic
-client registration, and `intent:read` / `intent:write` scopes. Never put tokens,
-passwords, verification codes, or private contact details in this repository.
-Do not configure shared secret headers as an OAuth workaround.
-
-Email binding is optional and helps with account recovery and notifications.
-Private contact details are entered separately from business text and login
-email. Without email, use manual checks or a host-supported scheduled task.
-A schedule is not created merely by installing this plugin.
-Business text is processed by the hosted Matchall service and its configured
-model providers. This repository is the client plugin package, not the backend.
-
-## Example prompts
-
-- “Draft a need for five standing desks in Singapore. Show me before activating.”
-- “Show current matches and explain which product fits have been verified.”
-- “Ask this matched supplier to exchange contact details after showing me mine.”
-- “Pause my standing-desk need; keep it for later.”
-
-## Development
+需要 Python 3.12 或更新版本。从仓库根目录运行：
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -v
 python scripts/validate.py
 python scripts/package.py
 ```
 
-The validator uses pinned Agent Plugins 1.0.0 schemas with recorded source URLs
-and hashes, so package validation does not depend on a live schema download.
-It checks package structure, referenced assets, contact workflow,
-review case inventory, and absence of embedded credentials. ZIP generation is
-local only, uses an explicit file allowlist, and inspects the generated archive.
-Neither script installs a plugin, invokes matching tools, deploys the service,
-or submits a marketplace application. CI only validates and packages locally.
-See the [checkbox checklist](docs/SUBMISSION-CHECKLIST.md),
-[reviewer guide](docs/REVIEWER-GUIDE.md) and [readiness](docs/READINESS.md) for the
-remaining marketplace work. Historical drafts in `docs/policy-drafts/` are superseded by the public pages.
-Archive-readable copies are in `docs/published-policies/`. Page availability is
-separate from validation of the remaining operational and legal arrangements.
+也可以指定单个平台：
 
-## Support and license
+```sh
+python scripts/validate.py --platform chatgpt
+python scripts/package.py --platform grok-bot
+```
 
-Use this repository's Issues for public package bugs. Never post credentials,
-private contact details, or account recovery information in issues. For account, privacy and abuse requests use
-[Matchall Support](https://matchall.net/support) or support@awiki.ai. Privacy and
-terms are published at [Privacy Policy](https://matchall.net/privacy) and
-[Terms of Service](https://matchall.net/terms). Their links remain included in 0.1.10.
-The privacy notice explicitly discloses pending cleanup and provider-verification
-work. See [retention plan](docs/POLICY-IMPLEMENTATION.md).
+输出包括自包含目录 `dist/matchall-chatgpt/`、`dist/matchall-grok-bot/`，
+以及对应的 `*-preparation.zip`。每个 ZIP 只包含一个插件，技能和素材均为真实文件，
+没有跨目录依赖或符号链接。脚本校验 ZIP 内容并输出 SHA-256；相同源码生成相同 ZIP。
+生成目录会在重新构建时刷新，请修改源文件，不要修改 `dist/`。
 
-The [public development walkthrough](https://matchall.net/review/matchall-chatgpt-demo-20261023.html) requires no
-sign-in. Its direct MP4 URL is in the manifest; it is not acceptance evidence for
-the current package. See [administrator handoff](docs/ADMIN-HANDOFF.md).
+**仓库根目录和 `platforms/<平台>/` 都不是可直接安装的插件目录。**
+安装或上传时使用生成目录/ZIP，并遵循目标宿主的实际安装流程。
+只接受 Git 仓库根目录的平台，需要先核实其子目录能力或另行设计经授权的分发方式，
+不能直接把本仓库 URL 当作已兼容的安装入口。
 
-[MIT](LICENSE) applies to this plugin package. It does not grant access to other
-users' data, relicense the hosted backend, or imply permission to impersonate
-AWiki, Matchall, OpenAI, Cursor, or xAI. The monochrome logo follows AWiki branding.
+## 源码布局
 
-## Matchall naming transition
+```text
+shared/
+  skills/match-service/SKILL.md   # 唯一的业务操作与授权规则
+  assets/                        # 共用图标和 Logo
+platforms/
+  chatgpt/                       # 清单、MCP 配置、平台说明及审核资料
+  grok-bot/
+platforms.json                   # 平台标识、插件名称和打包格式
+schemas/                        # 固定版本的 Agent Plugins 校验规则
+scripts/                        # 共用校验与本地打包
+tests/                          # 打包隔离、迁移完整性与失败路径回归
+docs/                           # 接入指引与迁移说明
+```
 
-The plugin is now named `matchall-chatgpt` and the MCP connection label is
-`matchall`. Its source repository is now
-[AgentConnect/matchall-chatgpt](https://github.com/AgentConnect/matchall-chatgpt).
-The MCP endpoint now targets the dedicated Matchall instance. The older
-`awiki.info` instance is separate; its accounts are not silently migrated.
-The dedicated instance retains its stable OAuth issuer identity and explicitly
-configured legacy resource compatibility. Account data and permissions are not
-changed by this package update.
-This source update does not publish a release or update installed host copies.
+修改业务流程时编辑 `shared/skills/match-service/SKILL.md`；修改平台展示、
+审核材料或连接格式时编辑对应 `platforms/` 目录。平台名称和版本独立管理。
+CI 运行离线校验、回归测试和本地打包，没有发布或部署步骤。
 
-The administrator reported a duplicate binding for the original MCP URL. The
-owner subsequently authorized deployment of the new endpoint used by 0.1.5.
-The portal has now explicitly rejected the URL change in this existing draft.
-Version 0.1.6 restores the original URL while retaining policy and demo links;
-the later screenshot shows MCP Configured and account connected. The earlier
-binding error is retained as history, not asserted as a current blocker. Do not
-retry 0.1.5 on this draft or delete the app to try to free its URL.
+## 文档
 
+- [其他平台接入指引](docs/PLATFORM-INTEGRATION.md)：MCP 直连、插件适配、授权约束和验收。
+- [迁移记录](docs/MIGRATION.md)：基线、Git 历史、原仓库与未提交资料的保留方式。
+- [ChatGPT 说明](platforms/chatgpt/README.md)与[审核状态](platforms/chatgpt/docs/READINESS.md)。
+- [Grok Bot 说明](platforms/grok-bot/README.md)与[历史验收](platforms/grok-bot/docs/host-validation-2026-10-19.md)。
 
-## Review preparation 0.1.10
+服务地址为 `https://matchall.net/amatch/v2`。用户在宿主 OAuth 界面授权；
+不要把访问令牌、验证码、私钥或真实联系方式写进仓库、配置样例或验收记录。
+草稿审核、启动匹配、公开摘要和联系方式交换是不同的授权步骤。
 
-The current portal supports email-code login. Dedicated synthetic reviewer data
-has been provisioned; actual reviewer mailbox delivery and sign-in are unverified.
-The updated five positive cases run with one reviewer account and a pre-seeded
-seller; P4 cancels the buyer's pending request instead of requiring seller login.
-Each run creates a fresh P1 intention. Three negative cases and the original MCP
-URL are retained. All eight cases were executed through a separate development
-MCP connection on October 22; the updated recording is public. Complete-package
-acceptance remains unverified, and a standard fresh-account OAuth scope issue
-requires repair and retesting. See [rehearsal evidence](docs/DEVELOPMENT-REHEARSAL-20261022.md).
-Credentials and exact sign-in instructions belong only in secure portal fields.
-
-The current demonstration includes English AI narration added on October 23 and
-optional English captions. The recorded ChatGPT video is unchanged.
-
-The listing now uses Business & Operations and describes the buyer/seller matching workflow with a concrete used-computer example. See [category rationale](docs/LISTING-CATEGORY.md); portal acceptance is unverified.
+插件源码采用 [MIT](LICENSE) 许可；不代表后端服务或第三方平台的许可与审核状态。

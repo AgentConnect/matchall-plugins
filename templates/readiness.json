@@ -1,0 +1,13 @@
+{
+  "source_package_version": "0.1.0",
+  "submission_ready": false,
+  "marketplace_submitted": false,
+  "marketplace_approved": false,
+  "target_host_e2e": "NOT_RUN_IN_TARGET_HOST",
+  "mcp_endpoint": "https://matchall.net/amatch/v2",
+  "pending": [
+    "Verify actual host format and OAuth compatibility",
+    "Run complete package and consent-flow acceptance in the target host",
+    "Obtain separate authorization before any installation, marketplace submission or release"
+  ]
+}

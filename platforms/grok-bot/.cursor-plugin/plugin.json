@@ -2,7 +2,7 @@
   "name": "matchall-grok-bot",
   "version": "0.1.2",
   "description": "Publish needs and offers, inspect matches, and exchange contact details with mutual consent.",
-  "repository": "https://github.com/AgentConnect/matchall-grok-bot",
+  "repository": "https://github.com/AgentConnect/matchall-plugins",
   "homepage": "https://matchall.net",
   "license": "MIT",
   "keywords": [

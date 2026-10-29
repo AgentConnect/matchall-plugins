@@ -88,6 +88,6 @@
   },
   "name": "matchall-chatgpt",
   "version": "0.1.10",
-  "repository": "https://github.com/AgentConnect/matchall-chatgpt",
+  "repository": "https://github.com/AgentConnect/matchall-plugins",
   "license": "MIT"
 }
