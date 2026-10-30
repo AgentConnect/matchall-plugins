@@ -1,4 +1,5 @@
 {
   "chatgpt": {"name": "matchall-chatgpt", "format": "agent-plugins"},
-  "grok-bot": {"name": "matchall-grok-bot", "format": "cursor"}
+  "grok-bot": {"name": "matchall-grok-bot", "format": "cursor"},
+  "workbuddy": {"name": "matchall-workbuddy", "format": "workbuddy"}
 }

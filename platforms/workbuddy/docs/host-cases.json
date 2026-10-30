@@ -1,0 +1,56 @@
+{
+  "execution_status": "PARTIAL_TARGET_HOST",
+  "connector_source": "matchall-workbuddy",
+  "target_host": "WorkBuddy 5.9.3 on Windows",
+  "cases": [
+    {
+      "id": "WB1",
+      "check": "Load final connector; verify actual source, endpoint, issuer, scopes and callback. Complete fresh OAuth, discover tools and call get_profile. Custom MCP success is separate evidence.",
+      "result": "PARTIAL",
+      "observation": "Custom MCP OAuth, recovered get_profile and existing-intent reads succeeded. Final connector source and exact callback remain unverified; transient connection failures are separate."
+    },
+    {
+      "id": "WB2",
+      "check": "Import generated Skill, verify metadata parsing and explicit draft approval before activation; keep contacts separate and intentions private.",
+      "result": "PARTIAL",
+      "observation": "Skill invocation, independent synthetic contact, exact draft approval, confirm, active/private readback, actual match and final paused/private verified in custom MCP. Full metadata parsing and final package identity remain unverified."
+    },
+    {
+      "id": "WB3",
+      "check": "Restart client, check identity, test authorization expiry and reconnect without duplicate writes.",
+      "result": "PARTIAL",
+      "observation": "Recovered profile, active and paused reads succeeded after reauthentication. Closing/reopening the client window observed, but second-instance log shows background process retained: no full-process restart pass. New negative-case session also reported connector not ready. Expiry remains untested."
+    },
+    {
+      "id": "WB4",
+      "check": "On uncertain writes read state first, reuse the original idempotency key and arguments, and avoid duplicate drafts/exchanges.",
+      "result": "PARTIAL",
+      "observation": "Uncertain activation and pause resolved by state reads without replay or duplicate creation; synthetic original intent finished paused/private. Controlled same-key replay and version conflict remain untested."
+    },
+    {
+      "id": "WB5",
+      "check": "Require separate approval of actual current public preview. Refresh and seek fresh approval after version conflict.",
+      "result": "BLOCKED",
+      "observation": "Draft remained private. Public approval interception and visibility version-conflict paths remain untested."
+    },
+    {
+      "id": "WB6",
+      "check": "Use two separately authorized synthetic identities for mutual contact consent, version conflicts, revocation and cross-account ID isolation.",
+      "result": "BLOCKED",
+      "observation": "Only one authenticated identity is established; two-account consent and isolation remain untested."
+    }
+  ],
+  "evidence_required": [
+    "date, source commit or working-tree identity, package SHA-256, client version, connection type",
+    "actual source and callback method, issuer, scopes and redacted account identity",
+    "observations, incomplete cases and cleanup of this run's synthetic data"
+  ],
+  "evidence_excluded": [
+    "tokens",
+    "authorization codes",
+    "verification codes",
+    "full authorization URLs",
+    "real private contacts"
+  ],
+  "execution_report": "HOST-VALIDATION-20261030.md"
+}

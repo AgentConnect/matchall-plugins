@@ -7,14 +7,16 @@ import tempfile
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from package_validation import require_no_links, validate_package
+from package_validation import (require_no_links, validate_package,
+                                render_workbuddy_skill, split_shared_skill)
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFESTS = {"agent-plugins": "plugin.json", "cursor": ".cursor-plugin/plugin.json"}
+MANIFESTS = {"agent-plugins": "plugin.json", "cursor": ".cursor-plugin/plugin.json",
+             "workbuddy": "connector-meta.json"}
 
 
 def load_platforms(root=ROOT):
-    platforms = json.loads((root / "platforms.json").read_text())
+    platforms = json.loads((root / "platforms.json").read_text(encoding="utf-8"))
     assert isinstance(platforms, dict) and platforms, "Empty platform registry"
     names = set()
     for platform_id, config in platforms.items():
@@ -46,7 +48,11 @@ def package_files(platform_id, root=ROOT):
     files = {"LICENSE": root / "LICENSE"}
     for name in ("README.md", "mcp.json", MANIFESTS[platform["format"]]):
         files[name] = source / name
+    if platform["format"] == "workbuddy":
+        files["icon.png"] = root / "shared/assets/logo.png"
     for directory in ("assets", "skills"):
+        if platform["format"] == "workbuddy" and directory == "assets":
+            continue
         shared = root / "shared" / directory
         for path in shared.rglob("*"):
             if path.is_file():
@@ -69,6 +75,19 @@ def stage_package(platform_id, destination, root=ROOT):
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
+    if platform_config(platform_id, root)["format"] == "workbuddy":
+        source = root / "platforms" / platform_id
+        metadata = json.loads((source / "skill-metadata.json").read_text(encoding="utf-8"))
+        connector = json.loads((destination / "connector-meta.json").read_text(encoding="utf-8"))
+        skill = destination / "skills/match-service/SKILL.md"
+        original = skill.read_bytes()
+        shared_fields, body = split_shared_skill(original)
+        skill.write_bytes(render_workbuddy_skill(original, metadata, connector["version"]))
+        integrity = destination / "docs/skill-integrity.json"
+        assert not integrity.exists(), "Skill integrity record must be generated, not supplied"
+        integrity.write_text(json.dumps(dict(shared_fields,
+                             body_sha256=hashlib.sha256(body).hexdigest()),
+                             ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     return validate_package(destination, platform_config(platform_id, root))
 
 
@@ -108,6 +127,7 @@ def build_platform(platform_id, root=ROOT):
         archive_target = output / archive_name
         require_no_links(target)
         assert not archive_target.is_symlink(), "Archive must not be a symlink"
+        # Preflight failures preserve old outputs; final copies are not transactional.
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(staged, target)

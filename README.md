@@ -1,6 +1,6 @@
 # Matchall Plugins
 
-Matchall 的多平台插件源码仓库。ChatGPT 和 Grok Bot 共用技能与品牌素材，
+Matchall 的多平台插件源码仓库。ChatGPT、Grok Bot 和 WorkBuddy 共用技能与品牌素材，
 保留各自的清单、MCP 配置、版本和审核记录。匹配服务后端继续由独立的
 `match-service` 仓库维护。
 
@@ -8,6 +8,7 @@ Matchall 的多平台插件源码仓库。ChatGPT 和 Grok Bot 共用技能与�
 | --- | --- | --- | --- |
 | ChatGPT | `matchall-chatgpt` | `0.1.10` | `plugin.json` |
 | Grok Bot / Cursor 格式 | `matchall-grok-bot` | `0.1.2` | `.cursor-plugin/plugin.json` |
+| WorkBuddy | `matchall-workbuddy` | `0.1.0` | `connector-meta.json` |
 
 这些版本标识准备包；本次仓库合并不发布版本、不提交商店审核，也不更新已安装插件。
 历史宿主验收结果保存在各平台的 `docs/` 中，不代表合并后新包已经完成宿主验收。
@@ -32,7 +33,7 @@ python scripts/validate.py --platform chatgpt
 python scripts/package.py --platform grok-bot
 ```
 
-输出包括自包含目录 `dist/matchall-chatgpt/`、`dist/matchall-grok-bot/`，
+输出包括自包含目录 `dist/matchall-chatgpt/`、`dist/matchall-grok-bot/`、`dist/matchall-workbuddy/`，
 以及对应的 `*-preparation.zip`。每个 ZIP 只包含一个插件，技能和素材均为真实文件，
 没有跨目录依赖或符号链接。脚本校验 ZIP 内容并输出 SHA-256；相同源码生成相同 ZIP。
 生成目录会在重新构建时刷新，请修改源文件，不要修改 `dist/`。
@@ -51,6 +52,7 @@ shared/
 platforms/
   chatgpt/                       # 清单、MCP 配置、平台说明及审核资料
   grok-bot/
+  workbuddy/                     # 原生连接器准备包；自定义 MCP 部分验收，正式身份待核实
 platforms.json                   # 平台标识、插件名称和打包格式
 schemas/                        # 固定版本的 Agent Plugins 校验规则
 scripts/                        # 共用校验与本地打包

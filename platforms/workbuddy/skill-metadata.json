@@ -1,0 +1,15 @@
+{
+  "display_name": "Matchall 供需匹配",
+  "display_name_en": "Matchall Matching",
+  "description_zh": "通过 Matchall 整理需求和供给，审核后启动匹配，并在双方同意后交换联系方式。",
+  "description_en": "Draft needs and offers, inspect actual matches, and exchange private contacts with mutual consent.",
+  "author": "AgentConnect contributors",
+  "examples_zh": [
+    "先保存并展示我的需求草稿，等我批准后再启动匹配。",
+    "查看实际匹配结果，不要公开意向或交换联系方式。"
+  ],
+  "examples_en": [
+    "Save and show my draft; wait for approval before activating matching.",
+    "Show actual matches without publishing the intent or exchanging contacts."
+  ]
+}
