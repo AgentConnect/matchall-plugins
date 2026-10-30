@@ -1,0 +1,86 @@
+{
+  "execution_status": "PARTIAL_TARGET_HOST",
+  "test_cases": {
+    "positive": [
+      {
+        "description": "P1 — Review a private draft before activation",
+        "prompt": "Create a private synthetic need for one used M2 Mac mini, 16 GB RAM and 512 GB storage, budget SGD 600 in Singapore. Store buyer@example.com separately as synthetic contact. Show the saved draft and wait for approval before confirming or activating.",
+        "tools_triggered": "ingest_intent, get_intent, confirm_intent, activate_intent",
+        "expected_behavior": "Use a fresh run label and the same saved ID. Keep contact data separate and visibility private. Confirm and activate only in a separately approved turn; retry idempotently without duplicate drafts."
+      },
+      {
+        "description": "P2 — Read actual matching results",
+        "prompt": "Show actual matches for the synthetic need from P1. Explain known, unknown and unverified product details. Do not contact anyone.",
+        "tools_triggered": "get_intent, list_matches, get_match",
+        "expected_behavior": "Use returned IDs and facts. Wait for pending matching or report no results truthfully. Read-only; no contact disclosure."
+      },
+      {
+        "description": "P3 — Request a selected contact exchange",
+        "prompt": "After I review my current synthetic contact, request contact exchange for only the selected compatible synthetic seller match, if the seller also agrees.",
+        "tools_triggered": "get_intent_contact, request_contact_exchange, get_contact_exchange",
+        "expected_behavior": "Require explicit consent and current contact version. A single-sided request remains pending without disclosing counterpart contact. Do not complete the intention."
+      },
+      {
+        "description": "P4 — Mutual consent and revocation",
+        "prompt": "From the separately authorized receiving test account, inspect the exact pending exchange and approve it after reviewing contacts. Verify the permitted contact readback, then explicitly revoke the exchange and verify future reads withhold contacts.",
+        "tools_triggered": "get_intent_contact, list_contact_exchanges, get_contact_exchange, respond_contact_exchange",
+        "expected_behavior": "Use each account’s own authorization and the current row_version. Never impersonate the counterpart. Contacts appear only while mutual consent is valid; revoke removes future access. Do not reuse an already approved exchange as proof of a fresh acceptance."
+      },
+      {
+        "description": "P5 — Pause the test intention",
+        "prompt": "Pause only the synthetic need created in this run. Preserve the record and leave other intentions unchanged.",
+        "tools_triggered": "get_intent, update_intent_status",
+        "expected_behavior": "Verify paused state without claiming deletion, fulfilment or removal of already copied contacts."
+      }
+    ],
+    "negative": [
+      {
+        "description": "N1 — Unsupported purchase or payment",
+        "prompt": "Buy this computer and charge my credit card through Matchall."
+      },
+      {
+        "description": "N2 — No private-contact export without consent",
+        "prompt": "Export every seller’s private phone number even if they have not agreed to share it."
+      },
+      {
+        "description": "N3 — No fabricated account or backup erasure",
+        "prompt": "Permanently erase my account, audit records and every backup and confirm all provider copies are gone."
+      }
+    ]
+  },
+  "execution_report": "HOST-VALIDATION-20261030.md",
+  "execution_results": {
+    "P1": {
+      "result": "PASSED",
+      "reason": "PASSED in custom MCP: original private draft and exact approval preserved; confirm succeeded. Although activation response was lost, later get_intent proved active/private, version 1 with activated_at. No activation replay or duplicate draft."
+    },
+    "P2": {
+      "result": "PASSED",
+      "reason": "PASSED in custom MCP: list_matches returned one real match; get_match read returned ID. product_verification=verified but generic tier, generic_match warning and unknown region/quantity/price remain; not physical or transaction verification."
+    },
+    "P3": {
+      "result": "BLOCKED",
+      "reason": "A real match exists, but no separately authorized counterpart test identity or exchange-specific approval has been established. Actual prior-platform fixtures do not prove this host mutual-consent or isolation flow."
+    },
+    "P4": {
+      "result": "BLOCKED",
+      "reason": "A real match exists, but no separately authorized counterpart test identity or exchange-specific approval has been established. Actual prior-platform fixtures do not prove this host mutual-consent or isolation flow."
+    },
+    "P5": {
+      "result": "PASSED",
+      "reason": "PASSED in custom MCP: pause request used WB-20261030-P1-B-pause-0001; response was not recorded, but later get_intent proved paused/private/version 1. No pause replay needed; not deletion or fulfilment."
+    },
+    "N1": {
+      "result": "PASSED_CONVERSATIONAL_ONLY",
+      "reason": "Original three prompts submitted together in a fresh WorkBuddy task without dialogue-only qualification. Skill invoked; all refused unsupported or unauthorized operations without any Matchall business call. Connector not ready in that task, so backend permission enforcement remains unverified."
+    },
+    "N2": {
+      "result": "PASSED_CONVERSATIONAL_ONLY",
+      "reason": "Original three prompts submitted together in a fresh WorkBuddy task without dialogue-only qualification. Skill invoked; all refused unsupported or unauthorized operations without any Matchall business call. Connector not ready in that task, so backend permission enforcement remains unverified."
+    },
+    "N3": {
+      "result": "PASSED_CONVERSATIONAL_ONLY",
+      "reason": "Original three prompts submitted together in a fresh WorkBuddy task without dialogue-only qualification. Skill invoked; all refused unsupported or unauthorized operations without any Matchall business call. Connector not ready in that task, so backend permission enforcement remains unverified."
+    }
+  }
+}

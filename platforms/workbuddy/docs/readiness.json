@@ -1,0 +1,31 @@
+{
+  "source_package_version": "0.1.0",
+  "submission_ready": false,
+  "marketplace_submitted": false,
+  "marketplace_approved": false,
+  "target_host_e2e": "PARTIAL_TARGET_HOST",
+  "mcp_endpoint": "https://matchall.net/amatch/v2",
+  "target_host": "WorkBuddy 5.9.3 on Windows",
+  "pending": [
+    "Existing approved intent completed custom-MCP activation, one match/detail read, and final paused/private readback. Repeat affected cases in final connector identity once supported loading is available.",
+    "Verify final connector source and actual callback through a supported host loading path; custom MCP evidence is separate.",
+    "Complete Skill field parsing, restart, expiry recovery and controlled idempotency/conflict tests.",
+    "Run mutual consent, revocation and isolation only with two separately authorized test identities and explicit exchange consent.",
+    "Keep this run private; public-preview and version-conflict tests require separate approval.",
+    "Verify publisher identity, source uniqueness and current submission requirements; no marketplace submission or deployment is authorized."
+  ],
+  "execution_report": "HOST-VALIDATION-20261030.md",
+  "development_connection": {
+    "type": "CUSTOM_MCP_WITH_INSTALLED_SKILL",
+    "configuration_saved": true,
+    "manual_trust": "COMPLETED_BY_ACCOUNT_HOLDER",
+    "oauth": "SUCCEEDED_CUSTOM_MCP_RECOVERY_OBSERVED",
+    "tool_discovery": "PASSED_CUSTOM_MCP_INTERMITTENT_FAILURES",
+    "profile_identity": "VERIFIED_AFTER_RECOVERY_20261030_1510",
+    "business_cases": "P1_P2_P5_PASSED_CUSTOM_MCP_PAUSED_PRIVATE",
+    "diagnostic_metadata_discovery": "PASS_DIAGNOSTIC_CLIENT_ONLY",
+    "host_metadata_discovery": "PASS_FROM_HOST_LOGS",
+    "email_bound": true,
+    "connection_recovery": "VERIFIED_BY_PROFILE_ACTIVE_AND_PAUSED_READBACK"
+  }
+}

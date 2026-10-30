@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "matchall": {
+      "type": "streamableHttp",
+      "url": "https://matchall.net/amatch/v2"
+    }
+  }
+}

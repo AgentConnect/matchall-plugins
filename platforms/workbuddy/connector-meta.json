@@ -1,0 +1,22 @@
+{
+  "name": "Matchall 供需匹配",
+  "name_zh": "Matchall 供需匹配",
+  "name_en": "Matchall Matching",
+  "description": "通过自然语言整理需求和供给，审核后启动匹配，并在双方同意后交换联系方式。",
+  "description_zh": "通过自然语言整理需求和供给，审核后启动匹配，并在双方同意后交换联系方式。",
+  "description_en": "Draft needs and offers, review matches, and exchange contacts with mutual consent.",
+  "source": "matchall-workbuddy",
+  "type": "mcp",
+  "version": "0.1.0",
+  "minWorkbuddyVersion": "4.24.0",
+  "examples_zh": [
+    "帮我整理采购需求，先展示草稿，等我批准后再启动匹配。",
+    "查看这份需求的实际匹配结果，不要联系任何人。",
+    "暂停选中的需求，保留记录。"
+  ],
+  "examples_en": [
+    "Draft a procurement need. Show me the draft and wait for approval before activation.",
+    "Show actual matches for this need without contacting anyone.",
+    "Pause my selected need and preserve the record."
+  ]
+}
